@@ -6,7 +6,30 @@
 
 {% if session %}
 
-<p> Welcome! you've signed in!</p>
+<center>
+<p> Welcome {{ session['username']}}! </p>
+<p>you've signed in as a {{ session['c_type'] }}!</p>
+</center>
+
+{% if session['c_type']=='buyer' %}
+<center>
+<p><a href="#"> click here </a> to look at the products available for sale</p>
+<p><a href="#"> click here </a> to look at your cart</p>
+</center>
+
+{% else %}
+<center>
+	<p>Add Product Below</p>
+<form action="/products" method='POST'>
+	<input type="text" name="name" placeholder="enter product name...">
+	<input type="text" name="description" placeholder="describe your product...">
+	<input type="text" name="price" placeholder="enter product price...">
+	<input type="submit" value="Add product">
+</form>
+
+<p><a href="#"> click here </a> to look at the products you've added to the store</p>
+</center>
+{% endif %}
 
 {% else %}
 <p>Login!</p>
@@ -19,6 +42,29 @@
 	<input type="submit" value="login"><br>
 
 </form>
+
+
+<p> Don't have an acount? Sign up!</p>
+
+<form action="/signup" method="POST">
+
+
+	<input type="text" name="username" placeholder="enter username...">
+
+	<input type="password" name="password1" placeholder="enter password1...">
+
+	<input type="password" name="password2" placeholder="re-enter password1...">
+
+	<p>Customer Type</p><br>
+	<p>Buyer</p><input type="radio" name="type" value="buyer">
+
+	<p>Seller</p><input type="radio" name="type" value="seller"><br>
+
+	<input type="submit" value="Create Account">
+
+
+</form>
+
 
 {% endif %}
 
