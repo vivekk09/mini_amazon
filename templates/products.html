@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+{% if session['c_type']=='buyer'%}
+<center> <p> Here are the lists of products you can buy! </p></center>
+
+{% else %}
+<center><p> Here are the lists of products you have added</p></center>
+{% endif %}
+{% for product in products %}
+
+<ul>
+	<li><b>Product Name</b>: {{product['name']}}</li>
+	<li><b>Product Price</b>: {{product['price']}}</li>
+	<li><b>Seller</b>: {{product['seller']}}</li>
+	<li><b>Product Description</b>: {{product['description']}}</li>
+
+</ul>
+
+{% if session['c_type']=='seller' %}
+<form action="/remove_products" method="POST">
+	<input type="hidden" name="name" value="{{product['name']}}">
+	<input type="submit" value="Remove Product">
+</form>
+{% else %}
+{% endif %}
+
+
+{% if session['c_type']=='buyer' %}
+<form action="/cart" method="POST">
+	<input type="hidden" name="name" value="{{product['name']}}">
+	<input type="submit" value="Add to cart">
+</form>
+{% else %}
+{% endif %}
+
+{% endfor %}
+
+{% endblock body %}

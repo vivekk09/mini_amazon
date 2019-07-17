@@ -13,8 +13,8 @@
 
 {% if session['c_type']=='buyer' %}
 <center>
-<p><a href="#"> click here </a> to look at the products available for sale</p>
-<p><a href="#"> click here </a> to look at your cart</p>
+<p><a href="/products"> click here </a> to look at the products available for sale</p>
+<p><a href="/cart"> click here </a> to look at your cart</p>
 </center>
 
 {% else %}
@@ -27,7 +27,7 @@
 	<input type="submit" value="Add product">
 </form>
 
-<p><a href="#"> click here </a> to look at the products you've added to the store</p>
+<p><a href="/products"> click here </a> to look at the products you've added to the store</p>
 </center>
 {% endif %}
 
